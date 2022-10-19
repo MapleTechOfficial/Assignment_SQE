@@ -2,7 +2,7 @@ Feature: Create a new Feature
 Background: User is able to create a new feature in the application
 
 Scenario Outline: User is unable to create a new feature in the application if it already exists
-    Given that I launch the chrome browser
+    Given I launch the chrome browser
     And go to the url http://localhost:8085/
     And enter email as "admin@featurehub.com" and password "admin123"
     And click on Features
