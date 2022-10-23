@@ -1,6 +1,19 @@
-Feature: metabase login
-  Scenario:Login to the metabase
+Feature: Run query
+  Background: Login to the metabase
     Given I launch chrome browser
     When i go to the url http://localhost:3000/
     And enter email as "hassan210302@gmail.com" and password "hassan210302" and click on login
-    Then metabase home page opens
+
+
+    Scenario Outline: Run Query
+      When I click on New button
+      And I click SQL Query
+      And select "<database>"
+      And write "<query>"
+      Then Query result is displayed
+
+
+      Examples:
+        |database|query|
+        |Local instance MySQL80|select * from temp where hassan = "hassan"|
+
