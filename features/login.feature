@@ -15,5 +15,5 @@ Feature: Run query
 
       Examples:
         |database|query|
-        |Local instance MySQL80|select * from temp where hassan = "hassan"|
+        |Sample Database|select * from temp|
 

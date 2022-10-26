@@ -30,20 +30,19 @@ def selectdatabase(context, database):
                                 "//*[@id='root']/div/div/main/div/div/div[2]/main/div[1]/div/div[1]/div[1]/div/a/span[1]/span").click()
 
     try:
-        art = context.driver.find_elements_by_xpath( "// *[ @ id = 'DataPopover']")
-        j=0
+        art = context.driver.find_elements(By.CLASS_NAME, "List-item-title")
+        j = 0
         for i in art:
-             pr = i.find_element(By.CLASS_NAME, "List-item-title")
-             if(pr.text==database):
-                  pr.click()
-                  time.sleep(1)
-                  j=1
-                  assert True
-        if j==0:
-            assert False
+            print(i.text)
+            if(database in i.text):
+                print(database)
+                i.click()
+                break
+
     except:
         context.driver.close()
-        assert False
+        assert False,"database not found"
+
 
 
 @when(u'write "{Query}"')
@@ -52,7 +51,7 @@ def step_impl(context,Query):
     context.driver.find_element(By.CLASS_NAME, "ace_text-input").send_keys(Query)
     time.sleep(2)
     context.driver.find_element(By.XPATH,"// *[ @ id = 'root'] / div / div / main / div / div / div[2] / main / div[1] / div / div[2] / aside / button").click()
-    time.sleep(3)
+    time.sleep(5)
 @then(u'Query result is displayed')
 def step_impl(context):
       context.driver.close()
