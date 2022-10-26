@@ -1,4 +1,4 @@
-#Meeting 2 Notes
+# Meeting 2 Notes 24/10/22
 - Metabase API Guide: https://www.metabase.com/learn/administration/metabase-api
 ##Work Divided
 - Login Session Token
