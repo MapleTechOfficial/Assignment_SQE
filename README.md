@@ -55,3 +55,34 @@ else:
 ```
 - There are several status code on the site such as 404, 403, which all means, in simple terms, that the post request field except the status code 200.
 - For other requests type, you can visit the following link: [Metabase Database API](https://www.metabase.com/docs/latest/api/database)
+## Existing Metabase Automation Testing
+- Metabase testing was done using clojure language. 
+- We can find many examples which are similar to the explanations above on the following link: [Metabase API Automation](https://github.com/metabase/metabase/blob/master/test/metabase/api)
+- For task 4, I am using the `slack_test.clj` which is explained below
+  - The first few lines are of required test cases which is to obtain the session token:
+  ```
+    (:require [clojure.string :as str]
+            [clojure.test :refer :all]
+            [java-time :as t]
+            [metabase.config :as config]
+            [metabase.integrations.slack :as slack]
+            [metabase.test :as mt]))
+  ```
+  
+  - Then a function is defined using `deftest update-slack-settings-test` which will test the settings for slack. This test is about setting the slack api token in metabase settings. The following lines are conditions to be true for running the test which is a prerequirement.
+  ```
+   (with-redefs [slack/valid-token?                                (constantly true)
+                    slack/channel-exists?                             (constantly true)
+                    slack/refresh-channels-and-usernames!             (constantly nil)
+                    slack/refresh-channels-and-usernames-when-needed! (constantly nil)]
+  ```
+  - It then assigns a token named "Fake token" which is ofcourse an invalid token to test the field. It must show an error with status code 400 which will pass the test.
+```
+slack-token     "fake-token"]
+          (mt/user-http-request :crowberto :put 200 "slack/settings" {:slack-app-token "fake-token"})
+          (is (= "fake-token" (slack/slack-app-token)))
+          (is (= nil (slack/slack-token))))))
+
+    (testing "A 400 error is returned if the Slack app token is invalid"
+```
+Similarly, other test cases for running on slack settings are given below in the file.
