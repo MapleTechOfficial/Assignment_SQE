@@ -41,20 +41,27 @@ This assignment phase was done on PyCharm IDE and it uses python language as its
 API = 'http://localhost:3000/api/session'
 USERDATA = {'username': 'admin@metabase.com', 'password': 'admin@123'}
 HEADERS = {'Content-Type': 'application/json'}
-
 token = requests.post(url=API, json=USERDATA, headers=HEADERS)
 ```
 - The token is received in the following format: ` {"id":"e7863c39-d5af-4862-b135-d8e2bd3ca939"}` and it has to be added in all the next request headers using `X-Metabase-Session: {token}`. Be advised that this token will get expired after 14 days.
 - The next part is of Posting request to do an action on the site such as: add a database:
-```
-x = requests.post(url=API_DB, json=DATA_DB, headers=HEADERS_DB)
-if x.status_code == 200:
-    print("Database Added Successfully!")
-else:
-    print("Error Occurred, Status Code: " + str(x.status_code))
-```
 - There are several status code on the site such as 404, 403, which all means, in simple terms, that the post request field except the status code 200.
-- For other requests type, you can visit the following link: [Metabase Database API](https://www.metabase.com/docs/latest/api/database)
+# Task 4 - Exploring existing UI and API Automation Tests
+## Existing Metabase UI Testing
+- The metabase front end tests were done in js. The source code of the tests is on the following folder: [Metabase UI Automation](https://github.com/metabase/metabase/blob/master/frontend/test/metabase)
+- I explored the test case of collections feature which is written in `BaseItemsTable.unit.spec.js` file
+- The first test is of opening the dashboard: A sample Item object is created `const ITEM = {...}` which has data like id, name, model.
+- The item is inserted into the dashboard url ` getUrl: () => "/dashboard/1"`
+- Then a test is written in it( which expects the result John Doe which was inserted using the Item Object and checks its date and time
+ ```
+  it("displays item data", () => {
+    const { getByText } = setup();
+    const lastEditedAt = moment(timestamp).format("MMMM DD, YYYY");
+
+    expect(getByText(ITEM.name)).toBeInTheDocument();
+ ```
+ - The test below it checks the format and last edit time.
+
 ## Existing Metabase Automation Testing
 - Metabase testing was done using clojure language. 
 - We can find many examples which are similar to the explanations above on the following link: [Metabase API Automation](https://github.com/metabase/metabase/blob/master/test/metabase/api)
