@@ -27,6 +27,7 @@ Feature: Add created user into the Administrator group
       Examples:
       |adminUser|adminPass|firstname|lastname|email|
       |abdullah@123.com|abdullah@123|muhammad|hashim|hashim@123456.com|
+      |abdullah@123.com|abdullah@123|Usman   |Faisal|usman@123456.com
       |abdullah@123.com|abdullah@123|hassan|rehman|hassan@123456.com|
       |abdullah@123.com|abdullah@123|junaid|ahmed|junaid@123456.com|
       |abdullah@123.com|abdullah@123|irtaza|zulfiqar|irtaza@123456.com|
