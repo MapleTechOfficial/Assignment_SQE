@@ -9,7 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 @given(u'I launch the chrome browser')
 def openBrowser(context):
-    context.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+    context.driver = webdriver.Chrome(executable_path='C:\chromedriver\chromedriver.exe')
 
 @given(u'go to the url http://localhost:3000/')
 def openURL(context):
