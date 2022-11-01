@@ -12,7 +12,13 @@ DATA_DB = {'engine': 'mysql', 'name': 'MyNewAPIDatabase', 'details': {'host': 'q
 HEADERS_DB = {'Content-Type': 'application/json', 'X-Metabase-Session': bearer}
 
 x = requests.post(url=API_DB, json=DATA_DB, headers=HEADERS_DB)
+db_id = x.json()['id']
 if x.status_code == 200:
-    print("Database Added Successfully!")
+    assert True, "Test Scenario Passed"
+    print("Test Scenario Passed")
+    API_DB = 'http://localhost:3000/api/database/%s' % db_id #Delete the added database to reset
+    r = requests.delete(url=API_DB, json=DATA_DB, headers=HEADERS_DB)
 else:
-    print("Error Occurred, Status Code: " + str(x.status_code))
+    assert False, "Test Scenario Failed"
+    print("Test Scenario Failed")
+
