@@ -92,4 +92,121 @@ slack-token     "fake-token"]
 
     (testing "A 400 error is returned if the Slack app token is invalid"
 ```
+
 Similarly, other test cases for running on slack settings are given below in the file.
+
+
+## Email testing 
+
+(Author: Hassan Rehman)
+
+### Send email
+
+- Send a test email using the SMTP Settings. You must be a superuser or have setting permission to do this. Returns {:ok true} if we were able to send the message successfully, otherwise a standard 400 error response.
+
+The code for this is 
+
+```
+(deftest test-email-settings-test
+  (testing "POST /api/email/test -- send a test email"
+    (mt/with-temporary-setting-values [email-from-address "notifications@metabase.com"
+                                       email-from-name    "Sender Name"
+                                       email-reply-to     ["reply-to@metabase.com"]]
+      (mt/with-fake-inbox
+        (testing "Non-admin -- request should fail"
+          (is (= "You don't have permissions to do that."
+                 (mt/user-http-request :rasta :post 403 "email/test")))
+          (is (= {}
+                 @mt/inbox)))
+        (is (= {:ok true}
+               (mt/user-http-request :crowberto :post 200 "email/test")))
+        (is (= {"crowberto@metabase.com"
+                [{:from     "Sender Name <notifications@metabase.com>",
+                  :to       ["crowberto@metabase.com"],
+                  :reply-to ["reply-to@metabase.com"]
+                  :subject  "Metabase Test Email",
+                  :body     "Your Metabase emails are working — hooray!"}]}
+               @mt/inbox))))))
+
+```
+
+- The first two test is for non admin setting and fake email test it must return 403. 
+
+- Then it will return ok true in case email is send successfully. In function we set the from too replytoo and other parameters for the email 
+
+### Update email setting
+
+- Update multiple email Settings. You must be a superuser or have setting permission to do this. 
+   -This include changing password and port 
+
+```
+            (is (= default-email-settings
+                         (email-settings)))))))))))
+  (testing "Updating values with obfuscated password (#23919)"
+    (mt/with-temporary-setting-values [email-from-address  "notifications@metabase.com"
+                                       email-from-name     "Sender Name"
+                                       email-reply-to      ["reply-to@metabase.com"]
+                                       email-smtp-host     "www.test.com"
+                                       email-smtp-password "preexisting"]
+      (with-redefs [email/test-smtp-connection (fn [settings]
+                                                 (let [obfuscated? (str/starts-with? (:pass settings) "****")]
+                                                   (is (not obfuscated?) "We received an obfuscated password!")
+                                                   (if obfuscated?
+                                                     {::email/error (ex-info "Sent obfuscated password" {})}
+                                                     settings)))]
+```
+This is updating setting with the obfuscatedpassword
+
+- Then there is code to check if SMTP connection is valid
+
+```
+ (testing "If we don't change the password we don't see the password"
+          (let [payload  (-> (email-settings)
+                             ;; user changes one property
+                             (assoc :email-from-name "notifications")
+                             ;; the FE will have an obfuscated value
+                             (update :email-smtp-password setting/obfuscate-value))
+                response (mt/user-http-request :crowberto :put 200 "email" payload)]
+            (is (= (setting/obfuscate-value "preexisting") (:email-smtp-password response)))))
+        (testing "If we change the password we can receive the password"
+          (let [payload  (-> (email-settings)
+                             ;; user types in a new password
+                             (assoc :email-smtp-password "new-password"))
+                response (mt/user-http-request :crowberto :put 200 "email" payload)]
+            (is (= "new-password" (:email-smtp-password response)))))))))
+```
+
+This is code for changing password these are all setting about the changing setting or default setting for sending email
+
+### Deleting all Email setting 
+
+- This is code for setting all emails setting to nil
+
+```
+(deftest clear-email-settings-test
+  (testing "DELETE /api/email"
+    (tu/discard-setting-changes [email-smtp-host email-smtp-port email-smtp-security email-smtp-username
+                                 email-smtp-password email-from-address email-from-name email-reply-to]
+      (with-redefs [email/test-smtp-settings (constantly {::email/error nil})]
+        (is (= (-> default-email-settings
+                   (assoc :with-corrections {})
+                   (update :email-smtp-security name))
+               (mt/user-http-request :crowberto :put 200 "email" default-email-settings)))
+        (let [new-email-settings (email-settings)]
+          (is (nil? (mt/user-http-request :crowberto :delete 204 "email")))
+          (is (= default-email-settings
+                new-email-settings))
+          (is (= {:email-smtp-host     nil
+                  :email-smtp-port     nil
+                  :email-smtp-security :none
+                  :email-smtp-username nil
+                  :email-smtp-password nil
+                  :email-from-address  "notifications@metabase.com"
+                  :email-from-name     nil
+                  :email-reply-to      nil}
+                 (email-settings))))))))
+
+```
+
+
+
