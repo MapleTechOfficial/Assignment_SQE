@@ -2,23 +2,19 @@
 (BY: Muhammad Abdullah)
 ## Existing Metabase UI Testing
 ### Metabase uses Javascript language for its frontend development and uses the React Framework as well. 
--First of all, I open the Metabase Documentation from its GitHub Site (https://github.com/metabase/metabase)
--Then for UI exploration, I went to the 'frontend' folder (https://github.com/metabase/metabase/tree/master/frontend)
--Here I selected the 'test' folder (https://github.com/metabase/metabase/tree/master/frontend/test)
--Then I selected the 'metabase' folder inside the test folder (https://github.com/metabase/metabase/tree/master/frontend/test/metabase)
--Here I explore the test case of 'Components' feature (https://github.com/metabase/metabase/tree/master/frontend/test/metabase/components)
--In that folder, the feature is written in 'PasswordReveal.unit.spec.js' file 
+- First of all, I open the Metabase Documentation from its GitHub Site (https://github.com/metabase/metabase)
+- Then for UI exploration, I went to the 'frontend' folder (https://github.com/metabase/metabase/tree/master/frontend)
+- Here I selected the 'test' folder (https://github.com/metabase/metabase/tree/master/frontend/test)
+- Then I selected the 'metabase' folder inside the test folder (https://github.com/metabase/metabase/tree/master/frontend/test/metabase)
+- Here I explore the test case of 'Components' feature (https://github.com/metabase/metabase/tree/master/frontend/test/metabase/components)
+- In that folder, the feature is written in 'PasswordReveal.unit.spec.js' file 
            (https://github.com/metabase/metabase/blob/master/frontend/test/metabase/components/PasswordReveal.unit.spec.js)
            
            
--The Only test written in it is of the Revealing the password 
-
-  ````
-   describe("password reveal", () => {})
-  ````
+- The Only test written in it is of the Revealing the password `describe("password reveal", () => {})`
    
    
--The first implementation of the test is about the visibility state of the password when the 'hide/show' are clicked
+- The first implementation of the test is about the visibility state of the password when the 'hide/show' are clicked
 
   ````
    it("should toggle the visibility state when hide / show are clicked", () => {
@@ -30,7 +26,7 @@
   ````
   
   
--The second implementation of the test is about the rendering of the copy button
+- The second implementation of the test is about the rendering of the copy button
 
   ````
     it("should render a copy button", () => {
@@ -41,9 +37,9 @@
   ````
   
   
--So the overall test of the Password Revealing is as follows:
+- So the overall test of the Password Revealing is as follows:
 
-  ````
+  ```
     describe("password reveal", () => {
   it("should toggle the visibility state when hide / show are clicked", () => {
     const { getByText } = render(<PasswordReveal />);
@@ -57,10 +53,10 @@
     // implicit assertion => it will throw an error if element is not found
     getByTestId("copy-button");
   });
-});
- ````
+ });
+ ```
  
--For doing this test they import the following, 
+- For doing this test they import the following, 
       -import the "react" from React
       -import { render, fireEvent } from "@testing-library/react"
       -import PasswordReveal from "metabase/components/PasswordReveal";
