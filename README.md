@@ -61,7 +61,11 @@ token = requests.post(url=API, json=USERDATA, headers=HEADERS)
     expect(getByText(ITEM.name)).toBeInTheDocument();
  ```
  - The test below it checks the format and last edit time.
-
+ - Both scenarios were passed upon running the test case.
+ - The results from terminl are here: 
+  ![Test Case Result](https://i.ibb.co/wdDNSFs/Screenshot-from-2022-11-05-14-16-30.png)
+  
+ - The average *execution time was 89.78s*
 ## Existing Metabase Automation Testing
 - Metabase testing was done using clojure language. 
 - We can find many examples which are similar to the explanations above on the following link: [Metabase API Automation](https://github.com/metabase/metabase/blob/master/test/metabase/api)
