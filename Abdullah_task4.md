@@ -61,8 +61,8 @@
       -import { render, fireEvent } from "@testing-library/react"
       -import PasswordReveal from "metabase/components/PasswordReveal";
       
-## Existing Metabase Automation Testing
-### Metabase testing was done using clojure language. 
+# Existing Metabase Automation Testing
+## Metabase testing was done using clojure language. 
 -First of all, I open the Metabase Documentation from its GitHub Site (https://github.com/metabase/metabase)
 -Then for API exploration, I went to the 'test/metabase' folder (https://github.com/metabase/metabase/tree/master/test/metabase)
 -Then inside this folder I select the 'api' folder (https://github.com/metabase/metabase/tree/master/test/metabase/api)
