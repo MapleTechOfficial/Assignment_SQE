@@ -9,6 +9,7 @@
 - Here I explore the test case of 'Components' feature (https://github.com/metabase/metabase/tree/master/frontend/test/metabase/components)
 - In that folder, the feature is written in 'PasswordReveal.unit.spec.js' file 
            (https://github.com/metabase/metabase/blob/master/frontend/test/metabase/components/PasswordReveal.unit.spec.js)
+- The code for this is available at [Password Reveal](https://github.com/metabase/metabase/blob/master/frontend/test/metabase/components/PasswordReveal.unit.spec.js)
            
            
 - The Only test written in it is of the Revealing the password `describe("password reveal", () => {})`
@@ -70,6 +71,7 @@
 - Then for API exploration, I went to the 'test/metabase' folder (https://github.com/metabase/metabase/tree/master/test/metabase)
 - Then inside this folder I select the 'api' folder (https://github.com/metabase/metabase/tree/master/test/metabase/api)
 - Here I have selected the 'premium_features_test.clj' file for API (https://github.com/metabase/metabase/blob/master/test/metabase/api/premium_features_test.clj)
+- The code for this API test is available at [Premium Feature](https://github.com/metabase/metabase/blob/master/test/metabase/api/premium_features_test.clj)
 - In order to start the API testing, we have to fetch the API Token first. This can be done as:
 
     ````
