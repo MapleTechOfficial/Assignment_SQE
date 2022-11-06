@@ -11,4 +11,5 @@
 - The I selected 'admin' folder (https://github.com/metabase/metabase/tree/master/frontend/test/metabase/scenarios/admin)
 - The I selected 'people' folder (https://github.com/metabase/metabase/tree/master/frontend/test/metabase/scenarios/admin/people)
 - Here I selected the test case of 'group-managers.cy.spec.js' feature                        (https://github.com/metabase/metabase/blob/master/frontend/test/metabase/scenarios/admin/people/group-managers.cy.spec.js)
+- The code for this test case is available on [log unit test](https://github.com/metabase/metabase/blob/master/frontend/test/metabase/scenarios/admin/people/group-managers.cy.spec.js)
 
