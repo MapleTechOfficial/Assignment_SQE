@@ -58,9 +58,9 @@
    ```
  
 - For doing this test they import the following:
-           import the "react" from React.
-           import { render, fireEvent } from "@testing-library/react".
-           import PasswordReveal from "metabase/components/PasswordReveal".
+- import the "react" from React.
+- import { render, fireEvent } from "@testing-library/react".
+- import PasswordReveal from "metabase/components/PasswordReveal".
     
 # Existing Metabase Automation Testing
 ## Metabase testing was done using clojure language. 
