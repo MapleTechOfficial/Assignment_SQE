@@ -55,14 +55,13 @@
   });
   });
 
- ```
- ```
+   ```
  
-- For doing this test they import the following, 
+-For doing this test they import the following, 
       -import the "react" from React
       -import { render, fireEvent } from "@testing-library/react"
       -import PasswordReveal from "metabase/components/PasswordReveal";
-  ````    
+    
 # Existing Metabase Automation Testing
 ## Metabase testing was done using clojure language. 
 -First of all, I open the Metabase Documentation from its GitHub Site (https://github.com/metabase/metabase)
