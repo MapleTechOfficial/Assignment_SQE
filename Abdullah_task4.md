@@ -53,14 +53,16 @@
     // implicit assertion => it will throw an error if element is not found
     getByTestId("copy-button");
   });
- });
+  });
+
+ ```
  ```
  
 - For doing this test they import the following, 
       -import the "react" from React
       -import { render, fireEvent } from "@testing-library/react"
       -import PasswordReveal from "metabase/components/PasswordReveal";
-      
+  ````    
 # Existing Metabase Automation Testing
 ## Metabase testing was done using clojure language. 
 -First of all, I open the Metabase Documentation from its GitHub Site (https://github.com/metabase/metabase)
@@ -71,10 +73,10 @@
 
     ````
     (ns metabase.api.premium-features-test
-  (:require [clojure.test :refer :all]
-            [metabase.public-settings.premium-features :as premium-features]
-            [metabase.public-settings.premium-features-test :as premium-features-test]
-            [metabase.test :as mt]))))
+    (:require [clojure.test :refer :all]
+    [metabase.public-settings.premium-features :as premium-features]
+    [metabase.public-settings.premium-features-test :as premium-features-test]
+    [metabase.test :as mt]))))
     ````
 -Then a function is defined using 'get-token-status-test' which will test the token status. Here, we obviously use fake token for our testing.
 -First it will fetch the status of the fake token
