@@ -56,7 +56,7 @@
   });
 
    ```
-- After running on terminal,we got the following output:
+- After running it on terminal by using the command 'yarn test-unit PasswordReveal.unit.spec.js', we got the following output:
      ![Test Case Result](https://i.imgur.com/okviWEH.jpg)
  
 - For doing this test they import the following:
