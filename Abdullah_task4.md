@@ -57,7 +57,7 @@
 
    ```
 - After running on terminal,we got the following output:
-     ![Test Case Result](https://ibb.co/BV76SpC)
+     ![Test Case Result]([https://ibb.co/BV76SpC](https://i.imgur.com/okviWEH.jpg))
  
 - For doing this test they import the following:
 - import the "react" from React.
