@@ -12,9 +12,10 @@
 - The code for this test case is available on [validate unit test](https://github.com/metabase/metabase/blob/master/frontend/test/metabase/lib/validate.unit.spec.js)
 
 - First of all it import the validate as 'import validate, { validators } from "metabase/lib/validate"'
-- This unit test check 3 test cases.
-- ####Test 1 (checking Required)
+- This unit test check 2 test cases.
+ #### Test 1 (checking Required)
 - This test is enclosed in the Test of validator as its purpose is to validate the required date
+
   ``` describe("required", () => {
       ---------
       });
@@ -73,7 +74,7 @@ describe("validators", () => {
 });
 ```
 
-- ####Test 2 (checking validate)  
+ #### Test 2 (checking validate)  
 - This test check for 2 test cases and 1 Test
   - should have the validators as methods
   ```
