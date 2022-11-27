@@ -141,5 +141,5 @@ describe("validate", () => {
 });
 ```
 ## Output
- ![Test Case Result]([https://i.imgur.com/zOW0tVB.jpg](https://drive.google.com/file/d/1_tgCuG4iQlOOrXFNrapmY9fmLGVmeEqL/view))
+ ![Test Case Result]([https://i.imgur.com/zOW0tVB.jpg])
  
